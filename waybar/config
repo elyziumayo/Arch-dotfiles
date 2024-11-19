@@ -175,8 +175,9 @@
 },
 
 "custom/text": {
-    "format": " user",
-    "interval": 1
+    "format": " {}",
+    "interval": "36000",
+    "exec:"whoami | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}'"
 },
 
 "tray": {
