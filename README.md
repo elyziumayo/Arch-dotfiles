@@ -11,35 +11,35 @@ Welcome to my personal dotfiles repository! 🎉 This is a showcase of my Arch L
 - System Bar: Waybar 📊
 - Screen Locker: Hyprlock 🔒
 
-### 🔧 Key Features of My Setup
+# 🔧 Key Features of My Setup
 
-# 🌱 Hyprland - My Wayland Compositor
+### 🌱 Hyprland - My Wayland Compositor
 
 - A modern, dynamic Wayland compositor built for performance and efficiency.
 - Fully customizable, with personalized keybindings, workspace management, and window behaviors to suit my workflow. 🖱️
 
-# 🎯 Rofi - The Ultimate Application Launcher
+### 🎯 Rofi - The Ultimate Application Launcher
 
 - Rofi is my go-to for launching apps and switching between windows.
 - I've customized the appearance and layout to keep it minimal yet functional. 📱
 - Smooth, fast, and responsive with support for dynamic theming.
 
-# 📂 Thunar - File Management Made Simple
+### 📂 Thunar - File Management Made Simple
 
 - A lightweight file manager with a clean and intuitive UI.
 - Configured with bookmarks for my most-used directories and custom keyboard shortcuts for quick navigation. ⚡
 
-# 📊 Waybar - System Status at a Glance
+### 📊 Waybar - System Status at a Glance
 
 - A minimal system bar to display important info like CPU, memory, battery, and time. ⏰
 - Fully customizable, with modules for performance metrics, media controls, and more. 💾
 
-# 🔒 Hyprlock - Locking My Screen with Style
+### 🔒 Hyprlock - Locking My Screen with Style
 
 - A simple yet powerful screen locker for Hyprland.
 - Easy to activate with a custom background and smooth animations. 🛡️
 
-# 🎨 Customization Highlights
+### 🎨 Customization Highlights
 
 - Keybindings: Custom keybindings for app launching, window switching, workspace management, and more. 🔑
 - Aesthetic Design: Everything is designed with a minimal and sleek appearance, focusing on productivity without distractions. ✨
