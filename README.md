@@ -1,8 +1,8 @@
-### 🌌 My Arch + Artix Dotfiles 🚀
+# 🌌 My Arch + Artix Dotfiles 🚀
 
 Welcome to my personal dotfiles repository! 🎉 This is a showcase of my Arch Linux / Artix setup, designed for a smooth, efficient, and visually appealing experience. My environment is powered by Hyprland (Wayland compositor) and features a range of tools like Rofi, Thunar, Waybar, and Hyprlock.
 
-### 🖥️ System Overview
+# 🖥️ System Overview
 
 - Operating System: Arch Linux / Artix 🐧
 - Compositor: Hyprland (Wayland) 🌿
@@ -45,7 +45,7 @@ Welcome to my personal dotfiles repository! 🎉 This is a showcase of my Arch L
 - Aesthetic Design: Everything is designed with a minimal and sleek appearance, focusing on productivity without distractions. ✨
 - Performance: The setup is lightweight, blazing-fast, and perfect for my high-productivity workflow. ⚡
 
-## 🛠️ Tools & Software
+# 🛠️ Tools & Software
 
 - Hyprland: A powerful and customizable Wayland compositor designed for modern desktops. 🌍
 - Rofi: The application launcher and window switcher, offering dynamic theming and a clean interface. 🎨
