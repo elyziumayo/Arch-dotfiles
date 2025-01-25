@@ -236,7 +236,7 @@
 #custom-arrow3 {
 	font-size: 11pt;
 	color: @memory ;
-	background: @active ;
+	background: @inactive;
 }
 
 #custom-arrow4 {
