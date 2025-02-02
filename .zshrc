@@ -10,6 +10,9 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+#oh-my-posh
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyo.json)"
+
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -25,10 +28,7 @@ zinit snippet OMZP::command-not-found
 
 # Load completions
 autoload -Uz compinit && compinit
-
 zinit cdreplay -q
-
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyo.json)"
 
 # Keybindings
 bindkey -e
