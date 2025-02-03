@@ -1,7 +1,7 @@
-# Set the directory we want to store zinit and plugins
+# Set the directory to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-# Download Zinit, if it's not there yet
+# if no zinit,downlaod
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
@@ -13,18 +13,18 @@ source "${ZINIT_HOME}/zinit.zsh"
 #oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyo.json)"
 
-# Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
+# zsh plugins  
+zinit ice light zsh-users/zsh-completions
+zinit ice light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions 
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::command-not-found
+zinit ice wait"1" snippet OMZL::git.zsh
+zinit ice wait"1" snippet OMZP::git
+zinit ice wait"1" snippet OMZP::sudo
+zinit ice wait"1" snippet OMZP::archlinux
+zinit ice wait"1" snippet OMZP::command-not-found
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -60,6 +60,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='eza -l --icons=always -h'
 alias vim='nvim'
 alias c='clear'
+alias up='yay'
 
 # Shell integrations
 eval "$(fzf --zsh)"
