@@ -3,6 +3,8 @@
 "position": "top",
 "modules-left": [
 "cpu",
+"custom/gpu",
+"disk",
 "memory",
 "hyprland/workspaces"
 ],
@@ -11,9 +13,9 @@
 "wireplumber",
 "custom/kernel",
 "network",
-"disk",
 "battery",
 "temperature",
+"custom/gput",
 "clock#time",
 "custom/notifi",
 "tray"
@@ -142,4 +144,15 @@
     "exec": "uname -r | sed -E 's/^([0-9]+\\.[0-9]+\\.[0-9]+)-.*-([a-zA-Z0-9]+)/\\1-\\2/'",
     "format": " {}"
 },
+"custom/gpu": {
+       "format": " {}%",
+       "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+       "interval": 2
+},
+"custom/gput": {
+       "format": " {}°",
+       "exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits",
+       "interval": 1
+},
+
 }
