@@ -78,7 +78,7 @@
 #waybar {
     background: @bg;
     color: @light;
-    font-family: "JetBrains Mono", "Font Awesome 6";
+    font-family: "JetBrains Mono", "siji";
     font-size: 10px;
     font-weight: bold;
 }
@@ -89,7 +89,7 @@
 
 /* Padding for all modules */
 #battery, #clock, #cpu, #language, #memory, #mode, #network,
-#wireplumber, #temperature, #tray, #custom-kernel, #backlight,
+#wireplumber, #temperature, #tray, #custom-kernel, #backlight,#custom-gpu,#custom-gput,
 #custom-notifi, #disk {
     padding: 0 0.9em;
 }
@@ -250,6 +250,15 @@
 }
 
 #custom-kernel {
+    background: @memory;
+    color: @black;
+}
+
+#custom-gpu {
+    background: @memory;
+    color: @black;
+}
+#custom-gput {
     background: @memory;
     color: @black;
 }
