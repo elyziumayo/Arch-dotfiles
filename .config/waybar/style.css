@@ -1,0 +1,256 @@
+/*
+ * Waybar Configuration
+ * Original creator: PipshagLE
+ * Modified by: me
+ */
+
+/* =============================================
+ * COLOR DEFINITIONS
+ * ============================================= 
+ */
+
+/* Base Colors */
+@define-color black    #282828;
+@define-color red      #cc241d;
+@define-color green    #292e42;
+@define-color yellow   #d79921;
+@define-color blue     #458588;
+@define-color purple   #bb9af7;
+@define-color aqua     #689d6a;
+@define-color gray     #a89984;
+
+/* Bright Colors */
+@define-color brgray   #928374;
+@define-color brred    #fb4934;
+@define-color brgreen  #9ece6a;
+@define-color bryellow #fabd2f;
+@define-color brblue   #83a598;
+@define-color brpurple #d3869b;
+@define-color braqua   #4fd6be;
+@define-color white    #ebdbb2;
+
+/* Background Colors */
+@define-color bg       #1f2335;
+@define-color bg2      #24283b;
+
+/* Semantic Colors */
+@define-color warning   @bryellow;
+@define-color critical  @red;
+@define-color mode      @black;
+@define-color unfocused @bg2;
+@define-color focused   @braqua;
+@define-color inactive  @purple;
+@define-color sound     @brpurple;
+@define-color network   @purple;
+@define-color memory    @braqua;
+@define-color cpu       @green;
+@define-color temp      @brgreen;
+@define-color layout    @bryellow;
+@define-color battery   @aqua;
+@define-color light     @white;
+
+/* =============================================
+ * ANIMATIONS
+ * ============================================= 
+ */
+
+@keyframes blink-warning {
+    70% { color: @light; }
+    to { color: @light; background-color: @warning; }
+}
+
+@keyframes blink-critical {
+    70% { color: @light; }
+    to { color: @light; background-color: @critical; }
+}
+
+/* =============================================
+ * BASE STYLES
+ * ============================================= */
+
+* {
+    border: none;
+    border-radius: 1px;
+    min-height: 0;
+    margin: 0.1em 0.2em;
+}
+
+#waybar {
+    background: @bg;
+    color: @light;
+    font-family: "JetBrains Mono", "Font Awesome 6";
+    font-size: 10px;
+    font-weight: bold;
+}
+
+/* =============================================
+ * COMMON MODULE STYLING
+ * ============================================= */
+
+/* Padding for all modules */
+#battery, #clock, #cpu, #language, #memory, #mode, #network,
+#wireplumber, #temperature, #tray, #custom-kernel, #backlight,
+#custom-notifi, #disk {
+    padding: 0 0.9em;
+}
+
+/* Animation settings for modules that can blink */
+#mode, #memory, #temperature, #battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* =============================================
+ * STATE STYLING
+ * ============================================= */
+
+/* Critical state styling */
+#memory.critical, #cpu.critical, #temperature.critical, #battery.critical {
+    color: @critical;
+}
+
+#mode, #memory.critical, #temperature.critical, #battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+/* Warning state styling */
+#network.disconnected, #memory.warning, #cpu.warning,
+#temperature.warning, #battery.warning {
+    background: @warning;
+    color: @black;
+}
+
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+/* =============================================
+ * WORKSPACES
+ * ============================================= */
+
+#workspaces button {
+    font-weight: bold;
+    padding: 0;
+    color: @white;
+    background: @unfocused;
+    font-size: 1em;
+}
+
+#workspaces button.visible {
+    color: @black;
+    background: @inactive;
+}
+
+#workspaces button.focused {
+    background: @focused;
+    color: @black;
+    opacity: 1;
+    padding: 0 0.4em;
+}
+
+#workspaces button.urgent {
+    border-color: #c9545d;
+    color: #c9545d;
+    opacity: 1;
+}
+
+#workspaces button:hover {
+    background: @black;
+    color: @white;
+}
+
+/* =============================================
+ * INDIVIDUAL MODULES
+ * ============================================= */
+
+/* Mode Display */
+#mode {
+    color: @light;
+    background: @mode;
+}
+
+/* Window */
+#window {
+    margin: 0 35pt;
+}
+
+/* System Modules */
+#wireplumber {
+    background: @sound;
+    color: @black;
+}
+
+#network {
+    background: @network;
+    color: @black;
+}
+
+#memory {
+    background: @memory;
+    color: @black;
+}
+
+#cpu {
+    background: @cpu;
+    color: @white;
+}
+
+#disk {
+    background: #565f89;
+    color: @white;
+}
+
+#temperature {
+    background: @temp;
+    color: @black;
+}
+
+#language {
+    background: @layout;
+    color: @black;
+}
+
+#battery {
+    background: @battery;
+    color: @white;
+}
+
+#tray {
+    background: @bg;
+}
+
+#backlight {
+    background: #ff9e64;
+    color: @black;
+}
+
+#idle_inhibitor {
+    background: @bg;
+    color: @white;
+}
+
+/* Clock */
+#clock.date {
+    background: #ff9e64;
+    color: @black;
+}
+
+#clock.time {
+    background: #3b4261;
+    color: @white;
+}
+
+/* Custom Modules */
+#custom-notifi {
+    background: #3b4261;
+    color: @white;
+}
+
+#custom-kernel {
+    background: @memory;
+    color: @black;
+}
+
