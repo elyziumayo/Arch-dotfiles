@@ -8,7 +8,7 @@ configuration {
 	window-format:              "{w} · {c} · {t}";
 }
 * {
-    font:                        "JetBrains Mono Nerd Font 8";
+    font:                        "JetBrains Mono Nerd Font 8.5";
     background:                  #030B16;
     background-alt:              #0A1B37;
     foreground:                  #FFFFFF;
@@ -22,7 +22,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       730px;
+    width:                       700px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -86,8 +86,8 @@ prompt {
 }
 listview {
     enabled:                     true;
-    columns:                     3;
-    lines:                       7;
+    columns:                     1;
+    lines:                       8;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -96,7 +96,7 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     
-    spacing:                     10px;
+    spacing:                     9px;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";
@@ -105,8 +105,8 @@ listview {
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
-    spacing:                     5px;
-    padding:                     7px;
+    spacing:                     3px;
+    padding:                     5px;
     border-radius:               0px;
     background-color:            transparent;
     text-color:                  @foreground;
@@ -139,7 +139,7 @@ element selected.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        18px;
+    size:                        19px;
     cursor:                      inherit;
 }
 element-text {
