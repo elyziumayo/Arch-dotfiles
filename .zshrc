@@ -60,6 +60,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color $realpath'
 alias ls='eza -l --icons=always -h'
 alias vim='nvim'
 alias c='clear'
+alias repoup='sudo reflector --verbose --sort rate -l 20 -c "neeeded" --save /etc/pacman.d/mirrorlist'
 
 # Shell integrations
 eval "$(fzf --zsh)"
