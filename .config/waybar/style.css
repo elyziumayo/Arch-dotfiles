@@ -78,7 +78,7 @@
 
 * {
     border: none;
-    border-radius: 1.7px;
+    border-radius: 1.5px;
     min-height: 0;
     margin: 0.1em 0.2em;
 }
@@ -111,6 +111,7 @@
 #custom-gpu,
 #custom-gput,
 #custom-notifi,
+#custom-powermenu,
 #disk {
     padding: 0 0.9em;
 }
@@ -295,4 +296,10 @@
 #custom-gput {
     background: @memory;
     color: @black;
+}
+
+#custom-powermenu {
+    background: @sound;
+    color: @black;
+
 }
