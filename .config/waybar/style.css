@@ -6,25 +6,18 @@
 
 /* =============================================
  * COLOR DEFINITIONS
- * ============================================= 
- */
+ * ============================================= */
 
 /* Base Colors */
 @define-color black    #282828;
 @define-color red      #cc241d;
 @define-color green    #292e42;
-@define-color yellow   #d79921;
-@define-color blue     #458588;
 @define-color purple   #bb9af7;
 @define-color aqua     #689d6a;
-@define-color gray     #a89984;
 
 /* Bright Colors */
-@define-color brgray   #928374;
-@define-color brred    #fb4934;
 @define-color brgreen  #9ece6a;
 @define-color bryellow #fabd2f;
-@define-color brblue   #83a598;
 @define-color brpurple #d3869b;
 @define-color braqua   #4fd6be;
 @define-color white    #ebdbb2;
@@ -49,19 +42,34 @@
 @define-color battery   @aqua;
 @define-color light     @white;
 
+/* Additional module-specific colors */
+@define-color disk      #565f89;
+@define-color backlight #ff9e64;
+@define-color clock-bg  #3b4261;
+@define-color urgent    #c9545d;
+
 /* =============================================
  * ANIMATIONS
- * ============================================= 
- */
+ * ============================================= */
 
 @keyframes blink-warning {
-    70% { color: @light; }
-    to { color: @light; background-color: @warning; }
+    70% {
+        color: @light;
+    }
+    to {
+        color: @light;
+        background-color: @warning;
+    }
 }
 
 @keyframes blink-critical {
-    70% { color: @light; }
-    to { color: @light; background-color: @critical; }
+    70% {
+        color: @light;
+    }
+    to {
+        color: @light;
+        background-color: @critical;
+    }
 }
 
 /* =============================================
@@ -70,7 +78,7 @@
 
 * {
     border: none;
-    border-radius: 1px;
+    border-radius: 1.7px;
     min-height: 0;
     margin: 0.1em 0.2em;
 }
@@ -88,14 +96,30 @@
  * ============================================= */
 
 /* Padding for all modules */
-#battery, #clock, #cpu, #language, #memory, #mode, #network,
-#wireplumber, #temperature, #tray, #custom-kernel, #backlight,#custom-gpu,#custom-gput,
-#custom-notifi, #disk {
+#battery,
+#clock,
+#cpu,
+#language,
+#memory,
+#mode,
+#network,
+#wireplumber,
+#temperature,
+#tray,
+#custom-kernel,
+#backlight,
+#custom-gpu,
+#custom-gput,
+#custom-notifi,
+#disk {
     padding: 0 0.9em;
 }
 
 /* Animation settings for modules that can blink */
-#mode, #memory, #temperature, #battery {
+#mode,
+#memory,
+#temperature,
+#battery {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -106,18 +130,27 @@
  * ============================================= */
 
 /* Critical state styling */
-#memory.critical, #cpu.critical, #temperature.critical, #battery.critical {
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#battery.critical {
     color: @critical;
 }
 
-#mode, #memory.critical, #temperature.critical, #battery.critical.discharging {
+#mode,
+#memory.critical,
+#temperature.critical,
+#battery.critical.discharging {
     animation-name: blink-critical;
     animation-duration: 2s;
 }
 
 /* Warning state styling */
-#network.disconnected, #memory.warning, #cpu.warning,
-#temperature.warning, #battery.warning {
+#network.disconnected,
+#memory.warning,
+#cpu.warning,
+#temperature.warning,
+#battery.warning {
     background: @warning;
     color: @black;
 }
@@ -152,8 +185,8 @@
 }
 
 #workspaces button.urgent {
-    border-color: #c9545d;
-    color: #c9545d;
+    border-color: @urgent;
+    color: @urgent;
     opacity: 1;
 }
 
@@ -199,7 +232,7 @@
 }
 
 #disk {
-    background: #565f89;
+    background: @disk;
     color: @white;
 }
 
@@ -223,7 +256,7 @@
 }
 
 #backlight {
-    background: #ff9e64;
+    background: @backlight;
     color: @black;
 }
 
@@ -258,8 +291,8 @@
     background: @memory;
     color: @black;
 }
+
 #custom-gput {
     background: @memory;
     color: @black;
 }
-
