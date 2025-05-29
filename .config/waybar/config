@@ -18,6 +18,7 @@
 "custom/gput",
 "clock#time",
 "custom/notifi",
+"custom/powermenu",
 "tray"
 ],
 
@@ -155,4 +156,10 @@
        "interval": 1
 },
 
+"custom/powermenu": {
+    "format": "⏻",
+    "tooltip": false,
+    "on-click": "powermenu",
+    "interval": "once"
+}
 }
