@@ -6,10 +6,11 @@ configuration {
     display-window:             "";
 	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
+  fake-transparency: true;
 }
 * {
-    font:                        "JetBrains Mono Nerd Font 8.5";
-    background:                  #030B16;
+    font:                        "JetBrains Mono Nerd Font Propo 8.5";
+    background:                  rgba(3, 11, 22, 0.8);
     background-alt:              #0A1B37;
     foreground:                  #FFFFFF;
     selected:                    #CB43A6;
@@ -17,8 +18,8 @@ configuration {
     urgent:                      #2FC6D8;
 }
 window {
-    /* properties for window widget */
-    transparency:                "real";
+    /* properties for window widget 
+    transparency:                "real";*/
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
