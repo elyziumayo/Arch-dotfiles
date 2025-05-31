@@ -17,8 +17,8 @@
 "temperature",
 "custom/gput",
 "clock#time",
+"custom/wifi",
 "custom/notifi",
-"custom/powermenu",
 "tray"
 ],
 
@@ -156,10 +156,10 @@
        "interval": 1
 },
 
-"custom/powermenu": {
-    "format": "⏻",
+"custom/wifi": {
+    "format": "",
     "tooltip": false,
-    "on-click": "powermenu",
+    "on-click": "network",
     "interval": "once"
 }
 }
