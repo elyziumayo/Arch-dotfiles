@@ -86,7 +86,7 @@
 #waybar {
     background: @bg;
     color: @light;
-    font-family: "JetBrains Mono", "siji";
+    font-family: "JetBrainsMono Nerd Font Propo", "siji";
     font-size: 10px;
     font-weight: bold;
 }
@@ -111,7 +111,7 @@
 #custom-gpu,
 #custom-gput,
 #custom-notifi,
-#custom-powermenu,
+#custom-wifi,
 #disk {
     padding: 0 0.9em;
 }
@@ -298,7 +298,7 @@
     color: @black;
 }
 
-#custom-powermenu {
+#custom-wifi {
     background: @sound;
     color: @black;
 
