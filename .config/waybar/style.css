@@ -113,7 +113,7 @@
 #custom-notifi,
 #custom-wifi,
 #disk {
-    padding: 0 0.9em;
+    padding: 0 0.8em;
 }
 
 /* Animation settings for modules that can blink */
@@ -253,7 +253,7 @@
 }
 
 #tray {
-    background: @bg;
+    background: @disk;
 }
 
 #backlight {
