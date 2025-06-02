@@ -29,23 +29,18 @@
 /* Semantic Colors */
 @define-color warning   @bryellow;
 @define-color critical  @red;
-@define-color mode      @black;
 @define-color unfocused @bg2;
 @define-color focused   @braqua;
-@define-color inactive  @purple;
 @define-color sound     @brpurple;
 @define-color network   @purple;
 @define-color memory    @braqua;
 @define-color cpu       @green;
 @define-color temp      @brgreen;
-@define-color layout    @bryellow;
 @define-color battery   @aqua;
 @define-color light     @white;
 
 /* Additional module-specific colors */
 @define-color disk      #565f89;
-@define-color backlight #ff9e64;
-@define-color clock-bg  #3b4261;
 @define-color urgent    #c9545d;
 
 /* =============================================
@@ -95,19 +90,15 @@
  * COMMON MODULE STYLING
  * ============================================= */
 
-/* Padding for all modules */
+/* Padding for all active modules */
 #battery,
-#clock,
 #cpu,
-#language,
 #memory,
-#mode,
 #network,
 #wireplumber,
 #temperature,
 #tray,
 #custom-kernel,
-#backlight,
 #custom-gpu,
 #custom-gput,
 #custom-notifi,
@@ -117,7 +108,6 @@
 }
 
 /* Animation settings for modules that can blink */
-#mode,
 #memory,
 #temperature,
 #battery {
@@ -138,7 +128,6 @@
     color: @critical;
 }
 
-#mode,
 #memory.critical,
 #temperature.critical,
 #battery.critical.discharging {
@@ -175,7 +164,7 @@
 
 #workspaces button.visible {
     color: @black;
-    background: @inactive;
+    background-color: @purple;
 }
 
 #workspaces button.focused {
@@ -199,17 +188,6 @@
 /* =============================================
  * INDIVIDUAL MODULES
  * ============================================= */
-
-/* Mode Display */
-#mode {
-    color: @light;
-    background: @mode;
-}
-
-/* Window */
-#window {
-    margin: 0 35pt;
-}
 
 /* System Modules */
 #wireplumber {
@@ -242,11 +220,6 @@
     color: @black;
 }
 
-#language {
-    background: @layout;
-    color: @black;
-}
-
 #battery {
     background: @battery;
     color: @white;
@@ -256,22 +229,7 @@
     background: @disk;
 }
 
-#backlight {
-    background: @backlight;
-    color: @black;
-}
-
-#idle_inhibitor {
-    background: @bg;
-    color: @white;
-}
-
 /* Clock */
-#clock.date {
-    background: #ff9e64;
-    color: @black;
-}
-
 #clock.time {
     background: #3b4261;
     color: @white;
@@ -301,5 +259,4 @@
 #custom-wifi {
     background: @sound;
     color: @black;
-
 }
