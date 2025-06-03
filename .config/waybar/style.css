@@ -1,77 +1,50 @@
+/*╔═══════════════════════════════════════════════════════════════════════════╗
+  ║                             Waybar Configuration                          ║
+  ║---------------------------------------------------------------------------║
+  ║ Original creator : PipshagLE                                              ║
+  ║ Modified by       : me                                                    ║
+  ╚═══════════════════════════════════════════════════════════════════════════╝*/
+
+/* Import dynamic Pywal colors */
+@import url("/home/username/.cache/wal/colors-waybar.css");
+@define-color critical #cc241d;
+@define-color urgent   #c9545d;
+
 /*
- * Waybar Configuration
- * Original creator: PipshagLE
- * Modified by: me
- * Cleaned - removed unused modules
- */
-
-/* =============================================
- * COLOR DEFINITIONS
- * ============================================= */
-
-/* Base Colors */
-@define-color black    #282828;
-@define-color red      #cc241d;
-@define-color green    #292e42;
-@define-color purple   #bb9af7;
-@define-color aqua     #689d6a;
-
-/* Bright Colors */
-@define-color brgreen  #9ece6a;
-@define-color bryellow #fabd2f;
-@define-color brpurple #d3869b;
-@define-color braqua   #4fd6be;
-@define-color white    #ebdbb2;
-
-/* Background Colors */
-@define-color bg       #1f2335;
-@define-color bg2      #24283b;
-
-/* Semantic Colors */
-@define-color warning   @bryellow;
-@define-color critical  @red;
-@define-color unfocused @bg2;
-@define-color focused   @braqua;
-@define-color sound     @brpurple;
-@define-color network   @purple;
-@define-color memory    @braqua;
-@define-color cpu       @green;
-@define-color temp      @brgreen;
-@define-color battery   @aqua;
-@define-color light     @white;
-
-/* Additional module-specific colors */
-@define-color disk      #565f89;
-@define-color urgent    #c9545d;
-
-/* =============================================
- * ANIMATIONS
- * ============================================= */
+ ▗▄▖ ▄▄▄▄  ▄ ▄▄▄▄  ▗▞▀▜▌   ■  ▄  ▄▄▄  ▄▄▄▄   ▄▄▄ 
+▐▌ ▐▌█   █ ▄ █ █ █ ▝▚▄▟▌▗▄▟▙▄▖▄ █   █ █   █ ▀▄▄  
+▐▛▀▜▌█   █ █ █   █        ▐▌  █ ▀▄▄▄▀ █   █ ▄▄▄▀ 
+▐▌ ▐▌      █              ▐▌  █                  
+                          ▐▌                     
+*/
 
 @keyframes blink-warning {
     70% {
-        color: @light;
+        color: @foreground;
     }
     to {
-        color: @light;
-        background-color: @warning;
+        color: @foreground;
+        background-color: @color3;
     }
 }
 
 @keyframes blink-critical {
     70% {
-        color: @light;
+        color: @foreground;
     }
     to {
-        color: @light;
+        color: @foreground;
         background-color: @critical;
     }
 }
 
-/* =============================================
- * BASE STYLES
- * ============================================= */
-
+/*
+▗▄▄▖  ▗▄▖  ▗▄▄▖▗▄▄▄▖ ▗▄▄▖▗▄▄▄▖▗▖  ▗▖▗▖   ▗▄▄▄▖
+▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌   ▐▌     █   ▝▚▞▘ ▐▌   ▐▌   
+▐▛▀▚▖▐▛▀▜▌ ▝▀▚▖▐▛▀▀▘ ▝▀▚▖  █    ▐▌  ▐▌   ▐▛▀▀▘
+▐▙▄▞▘▐▌ ▐▌▗▄▄▞▘▐▙▄▄▖▗▄▄▞▘  █    ▐▌  ▐▙▄▄▖▐▙▄▄▖
+*/
+                                              
 * {
     border: none;
     border-radius: 1.5px;
@@ -80,18 +53,21 @@
 }
 
 #waybar {
-    background: @bg;
-    color: @light;
+    background: @background;
+    color: @foreground;
     font-family: "JetBrainsMono Nerd Font Propo", "siji";
     font-size: 10px;
     font-weight: bold;
 }
 
-/* =============================================
- * COMMON MODULE STYLING
- * ============================================= */
+/*
 
-/* Padding for all active modules */
+▗▞▀▘ ▄▄▄  ▄▄▄▄  ▄▄▄▄   ▄▄▄  ▄▄▄▄   ▄▄▄  ■  ▄   ▄ 
+▝▚▄▖█   █ █ █ █ █ █ █ █   █ █   █ ▀▄▄▗▄▟▙▄▖█   █ 
+    ▀▄▄▄▀ █   █ █   █ ▀▄▄▄▀ █   █ ▄▄▄▀ ▐▌   ▀▀▀█ 
+                                       ▐▌  ▄   █ 
+                                       ▐▌   ▀▀▀  
+*/                   
 #battery,
 #cpu,
 #memory,
@@ -108,8 +84,6 @@
 #disk {
     padding: 0 0.8em;
 }
-
-/* Animation settings for modules that can blink */
 #memory,
 #temperature,
 #battery {
@@ -118,11 +92,14 @@
     animation-direction: alternate;
 }
 
-/* =============================================
- * STATE STYLING
- * ============================================= */
+/*
 
-/* Critical state styling */
+ ▄▄▄  ■  ▗▞▀▜▌   ■  ▗▞▀▚▖
+▀▄▄▗▄▟▙▄▖▝▚▄▟▌▗▄▟▙▄▖▐▛▀▀▘
+▄▄▄▀ ▐▌         ▐▌  ▝▚▄▄▖
+     ▐▌         ▐▌       
+     ▐▌         ▐▌       
+*/
 #memory.critical,
 #cpu.critical,
 #temperature.critical,
@@ -143,8 +120,8 @@
 #cpu.warning,
 #temperature.warning,
 #battery.warning {
-    background: @warning;
-    color: @black;
+    background: @color3;
+    color: @background;
 }
 
 #battery.warning.discharging {
@@ -152,26 +129,29 @@
     animation-duration: 3s;
 }
 
-/* =============================================
- * WORKSPACES
- * ============================================= */
-
+/*
+▄   ▄  ▄▄▄   ▄▄▄ █  ▄  ▄▄▄ ▄▄▄▄  ▗▞▀▜▌▗▞▀▘▗▞▀▚▖ ▄▄▄ 
+█ ▄ █ █   █ █    █▄▀  ▀▄▄  █   █ ▝▚▄▟▌▝▚▄▖▐▛▀▀▘▀▄▄  
+█▄█▄█ ▀▄▄▄▀ █    █ ▀▄ ▄▄▄▀ █▄▄▄▀          ▝▚▄▄▖▄▄▄▀ 
+                 █  █      █                        
+                           ▀                        
+*/
 #workspaces button {
     font-weight: bold;
     padding: 0;
-    color: @white;
-    background: @unfocused;
+    color: @foreground;
+    background: @color8;
     font-size: 1em;
 }
 
 #workspaces button.visible {
-    color: @black;
-    background-color: @purple;
+    color: @background;
+    background-color: @color4;
 }
 
 #workspaces button.focused {
-    background: @focused;
-    color: @black;
+    background: @color6;
+    color: @background;
     opacity: 1;
     padding: 0 0.4em;
 }
@@ -183,82 +163,82 @@
 }
 
 #workspaces button:hover {
-    background: @black;
-    color: @white;
+    background: @background;
+    color: @foreground;
 }
 
-/* =============================================
- * INDIVIDUAL MODULES
- * ============================================= */
-
-/* System Modules */
+/*
+▄▄▄▄   ▄▄▄     ▐▌█  ▐▌█ ▗▞▀▚▖ ▄▄▄ 
+█ █ █ █   █    ▐▌▀▄▄▞▘█ ▐▛▀▀▘▀▄▄  
+█   █ ▀▄▄▄▀ ▗▞▀▜▌     █ ▝▚▄▄▖▄▄▄▀ 
+            ▝▚▄▟▌     █           
+*/
 #wireplumber {
-    background: @sound;
-    color: @black;
+    background: @color5;
+    color: @background;
 }
 
 #network {
-    background: @network;
-    color: @black;
+    background: @color4;
+    color: @background;
 }
 
 #memory {
-    background: @memory;
-    color: @black;
+    background: @color2;
+    color: @foreground;
 }
 
 #cpu {
-    background: @cpu;
-    color: @white;
+    background: @color10;
+    color: @foreground;
 }
 
 #disk {
-    background: @disk;
-    color: @white;
+    background: @color8;
+    color: @foreground;
 }
 
 #temperature {
-    background: @temp;
-    color: @black;
+    background: @color3;
+    color: @foreground;
 }
 
 #battery {
-    background: @battery;
-    color: @white;
+    background: @color6;
+    color: @foreground;
 }
 
 #tray {
-    background: @disk;
+    background: @color8;
 }
 
-/* Clock */
 #clock.time {
-    background: #3b4261;
-    color: @white;
+    background: @color12;
+    color: @foreground;
 }
 
-/* Custom Modules */
 #custom-notifi {
-    background: #3b4261;
-    color: @white;
+    background: @color12;
+    color: @foreground;
 }
 
 #custom-kernel {
-    background: @memory;
-    color: @black;
+    background: @color2;
+    color: @foreground;
 }
 
 #custom-gpu {
-    background: @memory;
-    color: @black;
+    background: @color2;
+    color: @foreground;
 }
 
 #custom-gput {
-    background: @memory;
-    color: @black;
+    background: @color2;
+    color: @foreground;
 }
 
 #custom-wifi {
-    background: @sound;
-    color: @black;
+    background: @color5;
+    color: @background;
 }
+
