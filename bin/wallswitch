@@ -7,7 +7,7 @@
 #    ╚███╔███╔╝██║  ██║███████╗███████╗███████║╚███╔███╔╝██║   ██║   ╚██████╗██║  ██║
 #     ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝
 #    ---------------------------------------------------------------------------
-#    Created by Elyziumayo                                         Version 1.0.0
+#    Created by Ayonemesis                                        Version 1.0.0
 #    ---------------------------------------------------------------------------
 
 # paths
@@ -22,6 +22,7 @@ cd "$WALLPAPER_DIR"
 selected=$(find . -type f -name "*.jpg" -o -name "*.png" | sed 's|./||' | while read -r img; do
     printf "$img\0icon\x1f$WALLPAPER_DIR/$img\n"
 done | rofi -dmenu -show-icons \
+    -kb-cancel 'Escape' \
     -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 1400px; height: 365px; border-radius:20px;}' \
     -theme-str 'mainbox {children: [ "message", "listview" ];}' \
     -theme-str 'listview {columns: 4; lines: 1;}' \
