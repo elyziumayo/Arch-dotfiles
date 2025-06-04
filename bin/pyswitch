@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+#    ██╗    ██╗ █████╗ ██╗     ██╗     ███████╗██╗    ██╗██╗████████╗ ██████╗██╗  ██╗
+#    ██║    ██║██╔══██╗██║     ██║     ██╔════╝██║    ██║██║╚══██╔══╝██╔════╝██║  ██║
+#    ██║ █╗ ██║███████║██║     ██║     ███████╗██║ █╗ ██║██║   ██║   ██║     ███████║
+#    ██║███╗██║██╔══██║██║     ██║     ╚════██║██║███╗██║██║   ██║   ██║     ██╔══██║
+#    ╚███╔███╔╝██║  ██║███████╗███████╗███████║╚███╔███╔╝██║   ██║   ╚██████╗██║  ██║
+#     ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝
+#    ---------------------------------------------------------------------------
+#    Created by Elyziumayo                                        Version 1.0.0
+#    ---------------------------------------------------------------------------
+
+# paths
+WALLPAPER_DIR="$HOME/wallpapers"
+CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
+CSS_FILE="$HOME/.cache/wal/colors.css"
+ROFI_DIR="$HOME/.config/rofi"
+COLORS_FILE="$ROFI_DIR/colors.rasi"
+
+# rofi wallpaper picker
+cd "$WALLPAPER_DIR"
+selected=$(find . -type f -name "*.jpg" -o -name "*.png" | sed 's|./||' | while read -r img; do
+    printf "$img\0icon\x1f$WALLPAPER_DIR/$img\n"
+done | rofi -dmenu -show-icons \
+    -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 1400px; height: 365px; border-radius:20px;}' \
+    -theme-str 'mainbox {children: [ "message", "listview" ];}' \
+    -theme-str 'listview {columns: 4; lines: 1;}' \
+    -theme-str 'element {padding: 10px; margin: 2px; orientation: vertical; children: [element-icon, element-text];  border-radius:20px;}' \
+    -theme-str 'element-icon {size: 300px;}' \
+    -theme-str 'element-text {horizontal-align: 0.5; vertical-align: 0.5;}' \
+    -p "Select Wallpaper")
+
+# exit if nothing selected
+[ -z "$selected" ] && exit 1
+
+# cleanup
+pkill waybar
+
+# setup hyprpaper
+echo "preload = ~/wallpapers/$selected" > "$CONFIG_FILE"
+echo "wallpaper = ,~/wallpapers/$selected" >> "$CONFIG_FILE"
+echo "splash = false" >> "$CONFIG_FILE"
+
+# generate colors
+wal -i "$WALLPAPER_DIR/$selected" -n
+
+# ensure rofi dir exists
+mkdir -p "$ROFI_DIR"
+
+# wait for pywal
+sleep 0.5
+
+# extract colors
+background=$(grep -o 'background: #[0-9A-Fa-f]\{6\}' "$CSS_FILE" | sed 's/.*#//')
+foreground=$(grep -o 'foreground: #[0-9A-Fa-f]\{6\}' "$CSS_FILE" | sed 's/.*#//')
+color1=$(grep -o 'color1: #[0-9A-Fa-f]\{6\}' "$CSS_FILE" | sed 's/.*#//')
+color2=$(grep -o 'color2: #[0-9A-Fa-f]\{6\}' "$CSS_FILE" | sed 's/.*#//')
+color3=$(grep -o 'color3: #[0-9A-Fa-f]\{6\}' "$CSS_FILE" | sed 's/.*#//')
+
+# write rofi theme
+cat > "$COLORS_FILE" << EOF
+* {
+    background:     #${background}F2;
+    background-alt: #${color1}F2;
+    foreground:     #${foreground}FF;
+    selected:       #${color2}FF;
+    active:         #${color3}FF;
+    urgent:         #${color1}FF;
+}
+EOF
+
+# refresh
+killall hyprpaper
+hyprpaper &
+waybar &
+
+# notify
+notify-send "Wallpaper & Theme Updated" "Wallpaper, colors, and Rofi theme have been updated to: $selected" -i "$WALLPAPER_DIR/$selected" 
