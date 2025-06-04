@@ -1,27 +1,46 @@
 /**
- *
- * Author : Aditya Shakya (adi1090x)
- * Github : @adi1090x
- * 
- * Rofi Theme File
- * Rofi Version: 1.7.3
- **/
+ * ┌─────────────────────────────────────┐
+ * │         ROFI THEME FILE             │
+ * │                                     │
+ * │  Original: Aditya Shakya (adi1090x) │
+ * │  Modified by: me                    │
+ * └─────────────────────────────────────┘
+▗▞▀▘ ▄▄▄  ▄▄▄▄  ▗▞▀▀▘▗▞▀▀▘▄     
+▝▚▄▖█   █ █   █ ▐▌   ▐▌   ▄     
+    ▀▄▄▄▀ █   █ ▐▛▀▘ ▐▛▀▘ █     
+                ▐▌   ▐▌   █ ▗▄▖ 
+                           ▐▌ ▐▌
+                            ▝▀▜▌
+                           ▐▙▄▞▘
+*/
 
-/*****----- Configuration -----*****/
 configuration {
     show-icons:                 false;
 }
 
+/*
+    █  ▄▄▄  ▗▖▗▞▀▜▌█ 
+    █ █   █ ▐▌▝▚▄▟▌█ 
+    █ ▀▄▄▄▀ ▐▛▀▚▖  █ 
+ ▗▄▖█       ▐▙▄▞▘  █ 
+▐▌ ▐▌                
+ ▝▀▜▌                
+▐▙▄▞▘                
+*/
+
 @import                        "~/.config/rofi/colors.rasi"
-/*****----- Global Properties -----*****/
 * { 
-    /* Fonts */
     font: "JetBrains Mono Nerd Font 10";
 }
 
-/*****----- Main Window -----*****/
+/*
+▄▄▄▄  ▗▞▀▜▌▄ ▄▄▄▄  ▄   ▄ ▄ ▄▄▄▄     ▐▌ ▄▄▄  ▄   ▄ 
+█ █ █ ▝▚▄▟▌▄ █   █ █ ▄ █ ▄ █   █    ▐▌█   █ █ ▄ █ 
+█   █      █ █   █ █▄█▄█ █ █   █ ▗▞▀▜▌▀▄▄▄▀ █▄█▄█ 
+           █             █       ▝▚▄▟▌            
+*/
+
 window {
-    /* properties for window widget */
     transparency:                "real";
     location:                    center;
     anchor:                      center;
@@ -29,8 +48,6 @@ window {
     width:                       515px;
     x-offset:                    0px;
     y-offset:                    0px;
-
-    /* properties for all widgets */
     enabled:                     true;
     margin:                      0px;
     padding:                     0px;
@@ -41,7 +58,13 @@ window {
     background-color:            @background;
 }
 
-/*****----- Main Box -----*****/
+/*
+▄▄▄▄  ▗▞▀▜▌▄ ▄▄▄▄  ▗▖    ▄▄▄  ▄   ▄ 
+█ █ █ ▝▚▄▟▌▄ █   █ ▐▌   █   █  ▀▄▀  
+█   █      █ █   █ ▐▛▀▚▖▀▄▄▄▀ ▄▀ ▀▄ 
+           █       ▐▙▄▞▘            
+*/
+
 mainbox {
     enabled:                     true;
     spacing:                     7px;
@@ -54,7 +77,14 @@ mainbox {
     children:                    [ "inputbar", "message", "listview" ];
 }
 
-/*****----- Inputbar -----*****/
+/*
+▄ ▄▄▄▄  ▄▄▄▄  █  ▐▌   ■  ▗▖    ▄▄▄  ▄   ▄ 
+▄ █   █ █   █ ▀▄▄▞▘▗▄▟▙▄▖▐▌   █   █  ▀▄▀  
+█ █   █ █▄▄▄▀        ▐▌  ▐▛▀▚▖▀▄▄▄▀ ▄▀ ▀▄ 
+█       █            ▐▌  ▐▙▄▞▘            
+        ▀            ▐▌                   
+*/
+
 inputbar {
     enabled:                     true;
     spacing:                     10px;
@@ -89,7 +119,16 @@ prompt {
     text-color:                  @background;
 }
 
-/*****----- Message -----*****/
+/*
+▄▄▄▄  ▗▞▀▚▖ ▄▄▄  ▄▄▄ ▗▞▀▜▌ ▗▞▀▚▖
+█ █ █ ▐▛▀▀▘▀▄▄  ▀▄▄  ▝▚▄▟▌ ▐▛▀▀▘
+█   █ ▝▚▄▄▖▄▄▄▀ ▄▄▄▀       ▝▚▄▄▖
+                         ▗▄▖    
+                        ▐▌ ▐▌   
+                         ▝▀▜▌   
+                        ▐▙▄▞▘
+*/
+
 message {
     enabled:                     true;
     margin:                      0px;
@@ -118,7 +157,14 @@ error-message {
     text-color:                  @foreground;
 }
 
-/*****----- Listview -----*****/
+/*
+█ ▄  ▄▄▄  ■  ▗▖    ▄▄▄  ▄   ▄ 
+█ ▄ ▀▄▄▗▄▟▙▄▖▐▌   █   █  ▀▄▀  
+█ █ ▄▄▄▀ ▐▌  ▐▛▀▚▖▀▄▄▄▀ ▄▀ ▀▄ 
+█ █      ▐▌  ▐▙▄▞▘            
+         ▐▌                   
+*/
+
 listview {
     enabled:                     true;
     columns:                     4;
@@ -142,7 +188,13 @@ listview {
     cursor:                      "default";
 }
 
-/*****----- Elements -----*****/
+/*▗▞▀▚▖█ ▗▞▀▚▖▄▄▄▄  ▗▞▀▚▖▄▄▄▄     ■   ▄▄▄ 
+▐▛▀▀▘█ ▐▛▀▀▘█ █ █ ▐▛▀▀▘█   █ ▗▄▟▙▄▖▀▄▄  
+▝▚▄▄▖█ ▝▚▄▄▖█   █ ▝▚▄▄▖█   █   ▐▌  ▄▄▄▀ 
+     █                         ▐▌       
+                               ▐▌       
+*/
+
 element {
     enabled:                     true;
     spacing:                     0px;
