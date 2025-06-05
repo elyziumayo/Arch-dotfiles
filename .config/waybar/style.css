@@ -6,7 +6,7 @@
   ╚═══════════════════════════════════════════════════════════════════════════╝*/
 
 /* Import dynamic Pywal colors */
-@import url("/home/username/.cache/wal/colors-waybar.css");
+@import url("../../.cache/wal/colors-waybar.css");
 @define-color critical #cc241d;
 @define-color urgent   #c9545d;
 
