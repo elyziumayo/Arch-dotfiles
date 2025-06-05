@@ -74,6 +74,7 @@ EOF
 killall hyprpaper
 hyprpaper &
 waybar &
-
+killall swaync
+swaync &
 # notify
 notify-send "Wallpaper & Theme Updated" "Wallpaper, colors, and Rofi theme have been updated to: $selected" -i "$WALLPAPER_DIR/$selected" 
