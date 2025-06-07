@@ -1,3 +1,3 @@
-if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
   exec Hyprland
 fi
