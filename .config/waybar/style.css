@@ -53,12 +53,14 @@
 }
 
 #waybar {
-    background: @background;
+      background: alpha(@background, 0.7);
     color: @foreground;
     font-family: "JetBrainsMono Nerd Font Propo", "siji";
     font-size: 10px;
     font-weight: bold;
 }
+
+
 
 /*
 
