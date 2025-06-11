@@ -61,7 +61,7 @@ color3=$(grep -o 'color3: #[0-9A-Fa-f]\{6\}' "$CSS_FILE" | sed 's/.*#//')
 # write rofi theme
 cat > "$COLORS_FILE" << EOF
 * {
-    background:     #${background}F2;
+    background:     #${background}CC;
     background-alt: #${color1}F2;
     foreground:     #${foreground}FF;
     selected:       #${color2}FF;
