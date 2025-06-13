@@ -7,7 +7,7 @@
 #    ╚███╔███╔╝██║  ██║███████╗███████╗███████║╚███╔███╔╝██║   ██║   ╚██████╗██║  ██║
 #     ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝
 #    ---------------------------------------------------------------------------
-#    Created by Elyziumayo                                      Version 1.0.0
+#    Created by Elyziumayo                                      Version 1.0.1
 #    ---------------------------------------------------------------------------
 
 # paths
@@ -19,19 +19,38 @@ COLORS_FILE="$ROFI_DIR/colors.rasi"
 
 # rofi wallpaper picker
 cd "$WALLPAPER_DIR"
-selected=$(find . -type f -name "*.jpg" -o -name "*.png" | sed 's|./||' | while read -r img; do
-    printf "$img\0icon\x1f$WALLPAPER_DIR/$img\n"
-done | rofi -dmenu -show-icons \
+declare -A display_map
+temp_file=$(mktemp)
+
+find . -type f -name "*.jpg" -o -name "*.png" | sed 's|./||' | while read -r img; do
+    display_name="${img%.*}"  # Remove extension for display
+    echo "$display_name|$img" >> "$temp_file"
+    printf "$display_name\0icon\x1f$WALLPAPER_DIR/$img\n"
+done | rofi -dmenu -show-icons -i \
     -kb-cancel 'Escape' \
-    -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 1400px; height: 365px; border-radius:20px;}' \
-    -theme-str 'mainbox {children: [ "message", "listview" ];}' \
+    -matching fuzzy\
+    -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 1300px; height: 357px; border-radius:10px 0px 0px 0px;}' \
+    -theme-str 'mainbox {padding:0px;spacing:0px;children: [ "message", "listview", "inputbar" ];margin:0px;}' \
+    -theme-str 'inputbar{padding:5px;children:[ "textbox-prompt-colon", "entry", "mode-switcher"];background-image:none;border:2px 0px 0px 0px solid;}'\
     -theme-str 'listview {columns: 4; lines: 1;}' \
-    -theme-str 'element {padding: 10px; margin: 2px; orientation: vertical; children: [element-icon, element-text];  border-radius:20px;}' \
-    -theme-str 'element-icon {size: 300px;}' \
-    -theme-str 'element-text {horizontal-align: 0.5; vertical-align: 0.5;}' \
-    -p "Select Wallpaper")
+    -theme-str 'element {padding: 0px; margin: 0px; spacing: 0px; orientation: vertical; children: [element-text,element-icon]; border-radius:5px 5px 0px 0px;}' \
+    -theme-str 'element-icon {size: 283px; margin: 0px; padding: 0px;}' \
+    -theme-str 'element-text {font: "Jetbrains Mono Propo 10";horizontal-align: 0.1; vertical-align: 0.0; margin: 20px 0px 0px 0px;}' \
+    -p "Select Wallpaper" > /tmp/rofi_selection
+
+# Get the selected display name
+selected_display=$(cat /tmp/rofi_selection)
 
 # exit if nothing selected
+[ -z "$selected_display" ] && { rm -f "$temp_file" /tmp/rofi_selection; exit 1; }
+
+# Convert display name back to full filename
+selected=$(grep "^$selected_display|" "$temp_file" | cut -d'|' -f2)
+
+# Clean up temp files
+rm -f "$temp_file" /tmp/rofi_selection
+
+# exit if no matching file found
 [ -z "$selected" ] && exit 1
 
 # cleanup
@@ -76,5 +95,6 @@ hyprpaper &
 waybar &
 killall swaync
 swaync &
+
 # notify
-notify-send "Wallpaper & Theme Updated" "Wallpaper, colors, and Rofi theme have been updated to: $selected" -i "$WALLPAPER_DIR/$selected" 
+notify-send "Wallpaper & Theme Updated" "Wallpaper, colors, and Rofi theme have been updated to: $selected" -i "$WALLPAPER_DIR/$selected"
