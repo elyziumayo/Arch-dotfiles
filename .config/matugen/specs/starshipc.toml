@@ -1,0 +1,156 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$git_metrics\
+$fill\
+$nodejs\
+$c\
+$rust\
+$python\
+$cmd_duration $jobs $time\
+$line_break\
+$character"""
+
+palette = 'colors'
+
+[palettes.colors]
+# Primary colors from Matugen
+primary = '{{colors.primary.default.hex}}'
+on_primary = '{{colors.on_primary.default.hex}}'
+primary_dim = '{{colors.primary_fixed_dim.default.hex}}'
+surface = '{{colors.surface.default.hex}}'
+surface_dim = '{{colors.surface_dim.default.hex}}'
+surface_container = '{{colors.surface_container.default.hex}}'
+on_surface = '{{colors.on_surface.default.hex}}'
+on_surface_variant = '{{colors.on_surface_variant.default.hex}}'
+tertiary = '{{colors.tertiary.default.hex}}'
+error = '{{colors.error.default.hex}}'
+# Additional semantic colors
+accent = '{{colors.primary.default.hex}}'
+muted = '{{colors.on_surface_variant.default.hex}}'
+bright = '{{colors.on_primary.default.hex}}'
+
+[nodejs]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "primary"
+
+[fill]
+symbol = " "
+
+[directory]
+style = "primary"
+read_only = " "
+truncation_length = 4
+truncate_to_repo = false
+
+[character]
+success_symbol = "[](primary)"
+error_symbol = "[✗ ](error)"
+vicmd_symbol = "[➜](tertiary)"
+
+[git_branch]
+symbol = ""
+format = "[$symbol$branch]($style) "
+style = "muted"
+
+[jobs]
+symbol = ""
+style = "error bold"
+number_threshold = 1
+format = "[$symbol]($style)"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "accent"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "muted"
+
+[git_metrics]
+disabled = false
+format = "([+$added]($added_style) )([-$deleted]($deleted_style) )"
+added_style = "tertiary"
+deleted_style = "error"
+
+[cmd_duration]
+format = "[$duration]($style)"
+style = "on_surface_variant"
+
+[memory_usage]
+symbol = "󰍛 "
+style = "on_surface_variant"
+
+[rust]
+symbol = " "
+style = "primary"
+
+[pixi]
+symbol = "󰏗 "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "󰟔 "
+
+[ruby]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[swift]
+symbol = " "
+
+[zig]
+symbol = " "
+
+[gradle]
+symbol = " "
+
+[package]
+symbol = "󰏗 "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[os.symbols]
+Artix = " "
+
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[bun]
+symbol = " "
+
+[c]
+symbol = " "
+
+[cpp]
+symbol = " "
+
+[cmake]
+symbol = " "
+
+[time]
+disabled = false
+style = "bright bold"
+format = "[$time]($style)"
+
+[custom.stunnel]
+when = "ps aux | grep stunnel | grep -v grep"
+command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
+style = "error"
+format = "[TUNNEL OPEN for $output]($style)"
