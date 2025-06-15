@@ -24,6 +24,7 @@ configuration {
 	window-format:              "{w} · {c} · {t}";
 }
 
+
 /*
     █  ▄▄▄  ▗▖▗▞▀▜▌█ 
     █ █   █ ▐▌▝▚▄▟▌█ 
@@ -37,13 +38,19 @@ configuration {
 
 * {
    font:                        "JetBrains Mono Nerd Font Propo 9";
-    border-colour:               var(selected);
-    handle-colour:               var(selected);
-    background-colour:           var(background);
-    foreground-colour:           var(foreground);
-    alternate-background:        var(background-alt);
-    selected-normal-background:  var(selected);
-    selected-normal-foreground:  var(background);
+    border-colour:               var(primary);
+    handle-colour:               var(primary);
+    background-colour:           var(surface);
+    foreground-colour:           var(on-surface);
+    alternate-background:        var(surface-container);
+    selected-normal-background:  var(primary);
+    selected-normal-foreground:  var(on-primary);
+    selected:                    var(primary);
+    background:                  var(surface);
+    foreground:                  var(on-surface);
+    background-alt:              var(surface-container);
+    urgent:                      var(error);
+    active:                      var(tertiary);
 }
 
 /*
@@ -104,7 +111,7 @@ inputbar {
     border-radius:               0px;
     border-color:                @border-colour;
     background-color:            transparent;
-    background-image:            url("default.png", width);
+    background-image:            url("~/.config/rofi/theme/default.png", width);
     text-color:                  @foreground-colour;
     children:                    [ "textbox-prompt-colon", "entry", "mode-switcher" ];
 }
@@ -118,7 +125,7 @@ textbox-prompt-colon {
     enabled:                     true;
     padding:                     5px 5px;
     expand:                      false;
-    str:                         "";
+   str:                         "";
     background-color:            inherit;
     text-color:                  inherit;
 }
@@ -319,4 +326,3 @@ error-message {
     background-color:            @background-colour;
     text-color:                  @foreground-colour;
 }
-
