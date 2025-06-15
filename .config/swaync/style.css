@@ -11,18 +11,18 @@
     ▀▄▄▄▀ █ ▀▄▄▄▀ █   ▄▄▄▀ 
           █                
 */
-@import url('../../.cache/wal/colors-waybar.css');
-@define-color cc-bg @color0;
-@define-color noti-border-color @color8;
-@define-color noti-bg @color0;
-@define-color noti-bg-darker @color0;
-@define-color noti-bg-hover @color1;
-@define-color noti-bg-focus @color1;
-@define-color noti-close-bg @color8;
-@define-color noti-close-bg-hover @color1;
-@define-color text-color @color7;
-@define-color text-color-disabled @color8;
-@define-color bg-selected @color8;
+@import url('../../.config/swaync/colors.css');
+@define-color cc-bg @background;
+@define-color noti-border-color @outline;
+@define-color noti-bg @background;
+@define-color noti-bg-darker @background;
+@define-color noti-bg-hover @surface_bright;
+@define-color noti-bg-focus @surface_bright;
+@define-color noti-close-bg @outline;
+@define-color noti-close-bg-hover @surface_bright;
+@define-color text-color @on_surface;
+@define-color text-color-disabled @outline;
+@define-color bg-selected @outline;
 
 /*
     █  ▄▄▄  ▗▖▗▞▀▜▌█ 
@@ -153,12 +153,12 @@
 
 .notification-action:first-child {
     border-bottom-left-radius: 0px;
-    background: @color0;
+    background: @background;
 }
 
 .notification-action:last-child {
     border-bottom-right-radius: 0px;
-    background: @color0;
+    background: @surface_tint ;
 }
 
 /*
@@ -167,7 +167,7 @@
 .notification-group-headers {
     font-weight: bold;
     font-size: 10px;
-    color: @color15;
+    color: @on_primary_container;
 }
 
 .notification-group-icon {
@@ -209,7 +209,7 @@
     font-weight: bold;
     font-style: italic;
     background: transparent;
-    color: @color5;
+    color: @tertiary;
     margin-left: 10px;
 }
 
@@ -218,7 +218,7 @@
     font-weight: bold;
     font-style: italic;
     background: transparent;
-    color: @color4;
+    color: 	@secondary;
     text-shadow: none;
     margin-right: 10px;
 }
@@ -291,8 +291,8 @@
 ─── TITLE ───
 */
 .widget-title {
-    background-color:@color10;
-    color: @color7;
+    background-color:	@primary_container;
+    color: 	@on_surface;
     margin: 5px;
     padding:6px;
     border-radius:15px 0px 0px 0px;
@@ -303,9 +303,9 @@
 .widget-title > button {
     font-size: 23px;
     font-weight: bold;
-    background-color:@color8;
+    background-color:	@outline;
     font-family: 'Symbols Nerd Font';
-    color: @color0;
+    color: 	@background;
     background: transparent;
     border-radius: 15px 0px 0px 0px ;
     border: 0px transparent;
@@ -321,25 +321,25 @@
 ─── DO NOT DISTURB SWITCH ───
 */
 .widget-dnd {
-    background: @color4;
+    background: @secondary;
     padding:7px;
     margin: 0px 5px;
     border-radius: 0px 0px 15px 0px; 
     font-size: 12px;
-    color: @color15;
+    color: 	@on_primary_container;
 }
 
 .widget-dnd > switch {
     min-width: 46px;
     min-height: 24px;
     border-radius: 12px;
-    background: @color8;
-    border: 1px solid @color8;
+    background: 	@outline;
+    border: 1px solid @outline;
 }
 
 .widget-dnd > switch:checked {
-    background: @color1;
-    border: 1px solid @color1;
+    background: @surface_bright;
+    border: 1px solid @surface_bright;
 }
 
 .widget-dnd > switch slider {
@@ -358,6 +358,7 @@
 .widget-dnd > label {
     font-size: 14px;
     font-weight: bold;
+    color:@tertiary_container;
 }
 
 /*
@@ -378,6 +379,6 @@
       █          
 */
 .blank-window {
-    background: alpha(@color0, 0.0);
+    background: alpha(@background, 0.0);
 }
 
