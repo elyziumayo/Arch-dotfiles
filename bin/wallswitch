@@ -7,15 +7,12 @@
 #    ╚███╔███╔╝██║  ██║███████╗███████╗███████║╚███╔███╔╝██║   ██║   ╚██████╗██║  ██║
 #     ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝
 #    ---------------------------------------------------------------------------
-#    Created by Elyziumayo                                      Version 1.0.1
+#    Created by Elyziumayo                                         Version 2.0.0
 #    ---------------------------------------------------------------------------
 
 # paths
 WALLPAPER_DIR="$HOME/wallpapers"
 CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
-CSS_FILE="$HOME/.cache/wal/colors.css"
-ROFI_DIR="$HOME/.config/rofi"
-COLORS_FILE="$ROFI_DIR/colors.rasi"
 
 # rofi wallpaper picker
 cd "$WALLPAPER_DIR"
@@ -53,48 +50,28 @@ rm -f "$temp_file" /tmp/rofi_selection
 # exit if no matching file found
 [ -z "$selected" ] && exit 1
 
-# cleanup
-pkill waybar
-
 # setup hyprpaper
 echo "preload = ~/wallpapers/$selected" > "$CONFIG_FILE"
 echo "wallpaper = ,~/wallpapers/$selected" >> "$CONFIG_FILE"
 echo "splash = false" >> "$CONFIG_FILE"
 
-# generate colors
-wal -i "$WALLPAPER_DIR/$selected" -n
-
-# ensure rofi dir exists
-mkdir -p "$ROFI_DIR"
-
-# wait for pywal
-sleep 0.5
-
-# extract colors
-background=$(grep -o 'background: #[0-9A-Fa-f]\{6\}' "$CSS_FILE" | sed 's/.*#//')
-foreground=$(grep -o 'foreground: #[0-9A-Fa-f]\{6\}' "$CSS_FILE" | sed 's/.*#//')
-color1=$(grep -o 'color1: #[0-9A-Fa-f]\{6\}' "$CSS_FILE" | sed 's/.*#//')
-color2=$(grep -o 'color2: #[0-9A-Fa-f]\{6\}' "$CSS_FILE" | sed 's/.*#//')
-color3=$(grep -o 'color3: #[0-9A-Fa-f]\{6\}' "$CSS_FILE" | sed 's/.*#//')
-
-# write rofi theme
-cat > "$COLORS_FILE" << EOF
-* {
-    background:     #${background}CC;
-    background-alt: #${color1}F2;
-    foreground:     #${foreground}FF;
-    selected:       #${color2}FF;
-    active:         #${color3}FF;
-    urgent:         #${color1}FF;
-}
-EOF
-
-# refresh
 killall hyprpaper
 hyprpaper &
+killall waybar &
+#generate colors
+matugen image "$WALLPAPER_DIR/$selected" 
 waybar &
+if command -v kitty >/dev/null 2>&1 && pgrep -x kitty >/dev/null 2>&1; then
+    # Try direct method first (if running inside kitty)
+    if [ "$TERM" = "xterm-kitty" ]; then
+        kitty @ set-colors --all "$HOME/.config/kitty/colors-kitty.conf" 2>/dev/null
+    else
+        # Try socket method
+        kitty @ --to "unix:/tmp/kitty_mat" set-colors --all "$HOME/.config/kitty/colors.conf" 2>/dev/null
+    fi
+fi
 killall swaync
 swaync &
-
 # notify
 notify-send "Wallpaper & Theme Updated" "Wallpaper, colors, and Rofi theme have been updated to: $selected" -i "$WALLPAPER_DIR/$selected"
+
