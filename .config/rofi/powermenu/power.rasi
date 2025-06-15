@@ -29,8 +29,22 @@ configuration {
 */
 
 @import                        "~/.config/rofi/colors.rasi"
-* { 
-    font: "JetBrains Mono Nerd Font 10";
+
+* {
+   font:                        "JetBrains Mono Nerd Font Propo 9";
+    border-colour:               var(primary);
+    handle-colour:               var(primary);
+    background-colour:           var(surface);
+    foreground-colour:           var(on-surface);
+    alternate-background:        var(surface-container);
+    selected-normal-background:  var(primary);
+    selected-normal-foreground:  var(on-primary);
+    selected:                    var(primary);
+    background:                  var(surface);
+    foreground:                  var(on-surface);
+    background-alt:              var(surface-container);
+    urgent:                      var(error);
+    active:                      var(tertiary);
 }
 
 /*
