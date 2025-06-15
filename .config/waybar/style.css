@@ -1,18 +1,21 @@
-/*╔═══════════════════════════════════════════════════════════════════════════╗
-  ║                             Waybar Configuration                          ║
-  ║---------------------------------------------------------------------------║
-  ║ Original creator : PipshagLE                                              ║
-  ║ Modified by       : me                                                    ║
-  ╚═══════════════════════════════════════════════════════════════════════════╝*/
+/**
+  ┌─────────────────────────────────────┐
+  │         WAYBAR THEME FILE           │
+  │                                     │
+  │  Original: PipshagLE                │
+  │  Modified by: me                    │
+  │  Updated for Matugen colors         │
+  └─────────────────────────────────────┘
+Import dynamic Matugen colors */
+@import "colors.css";
 
-/* Import dynamic Pywal colors */
-@import url("../../.cache/wal/colors-waybar.css");
-@define-color critical #cc241d;
-@define-color urgent   #c9545d;
+/* Additional color definitions for compatibility */
+@define-color critical @error;
+@define-color urgent @error_container;
 
 /*
  ▗▄▖ ▄▄▄▄  ▄ ▄▄▄▄  ▗▞▀▜▌   ■  ▄  ▄▄▄  ▄▄▄▄   ▄▄▄ 
-▐▌ ▐▌█   █ ▄ █ █ █ ▝▚▄▟▌▗▄▟▙▄▖▄ █   █ █   █ ▀▄▄  
+▐▌ ▐▌█   █ ▄ █ █ █ ▝▚▄▟▌▗▄▟▙▄▖▄ █   █ █   █ ▀▄▄▄  
 ▐▛▀▜▌█   █ █ █   █        ▐▌  █ ▀▄▄▄▀ █   █ ▄▄▄▀ 
 ▐▌ ▐▌      █              ▐▌  █                  
                           ▐▌                     
@@ -20,20 +23,20 @@
 
 @keyframes blink-warning {
     70% {
-        color: @foreground;
+        color: @on_surface;
     }
     to {
-        color: @foreground;
-        background-color: @color3;
+        color: @on_surface;
+        background-color: @tertiary;
     }
 }
 
 @keyframes blink-critical {
     70% {
-        color: @foreground;
+        color: @on_surface;
     }
     to {
-        color: @foreground;
+        color: @on_surface;
         background-color: @critical;
     }
 }
@@ -53,17 +56,14 @@
 }
 
 #waybar {
-      background: alpha(@background, 0.7);
-    color: @foreground;
+    background: alpha(@surface, 0.7);
+    color: @on_surface;
     font-family: "JetBrainsMono Nerd Font Propo", "siji";
     font-size: 10px;
     font-weight: bold;
 }
 
-
-
 /*
-
 ▗▞▀▘ ▄▄▄  ▄▄▄▄  ▄▄▄▄   ▄▄▄  ▄▄▄▄   ▄▄▄  ■  ▄   ▄ 
 ▝▚▄▖█   █ █ █ █ █ █ █ █   █ █   █ ▀▄▄▗▄▟▙▄▖█   █ 
     ▀▄▄▄▀ █   █ █   █ ▀▄▄▄▀ █   █ ▄▄▄▀ ▐▌   ▀▀▀█ 
@@ -86,6 +86,7 @@
 #disk {
     padding: 0 0.8em;
 }
+
 #memory,
 #temperature,
 #battery {
@@ -95,7 +96,6 @@
 }
 
 /*
-
  ▄▄▄  ■  ▗▞▀▜▌   ■  ▗▞▀▚▖
 ▀▄▄▗▄▟▙▄▖▝▚▄▟▌▗▄▟▙▄▖▐▛▀▀▘
 ▄▄▄▀ ▐▌         ▐▌  ▝▚▄▄▖
@@ -122,8 +122,8 @@
 #cpu.warning,
 #temperature.warning,
 #battery.warning {
-    background: @color3;
-    color: @background;
+    background: @tertiary;
+    color: @on_tertiary;
 }
 
 #battery.warning.discharging {
@@ -141,19 +141,19 @@
 #workspaces button {
     font-weight: bold;
     padding: 0;
-    color: @foreground;
-    background: @color8;
+    color: @on_surface;
+    background: @surface_container_high;
     font-size: 1em;
 }
 
 #workspaces button.visible {
-    color: @background;
-    background-color: @color4;
+    color: @on_primary;
+    background-color: @primary_container;
 }
 
 #workspaces button.focused {
-    background: @color6;
-    color: @background;
+    background: @primary;
+    color: @on_primary;
     opacity: 1;
     padding: 0 0.4em;
 }
@@ -165,8 +165,8 @@
 }
 
 #workspaces button:hover {
-    background: @background;
-    color: @foreground;
+    background: @surface_container;
+    color: @on_surface;
 }
 
 /*
@@ -175,72 +175,82 @@
 █   █ ▀▄▄▄▀ ▗▞▀▜▌     █ ▝▚▄▄▖▄▄▄▀ 
             ▝▚▄▟▌     █           
 */
+
+/* Audio/Volume */
 #wireplumber {
-    background: @color5;
-    color: @background;
+    background: @secondary;
+    color: @on_secondary;
 }
 
+/* Network */
 #network {
-    background: @color4;
-    color: @background;
+    background: @primary;
+    color: @on_primary;
 }
 
+/* Memory */
 #memory {
-    background: @color2;
-    color: @foreground;
+    background: @tertiary_container;
+    color: @on_tertiary_container;
 }
 
+/* CPU */
 #cpu {
-    background: @color10;
-    color: @foreground;
+    background: @surface_container_highest;
+    color: @on_surface;
 }
 
+/* Disk */
 #disk {
-    background: @color8;
-    color: @foreground;
+    background: @surface_container_high;
+    color: @on_surface;
 }
 
+/* Temperature */
 #temperature {
-    background: @color3;
-    color: @foreground;
+    background: @tertiary;
+    color: @on_tertiary;
 }
 
+/* Battery */
 #battery {
-    background: @color6;
-    color: @foreground;
+    background: @primary_container;
+    color: @on_primary_container;
 }
 
+/* System Tray */
 #tray {
-    background: @color8;
+    background: @surface_container_high;
 }
 
+/* Clock */
 #clock.time {
-    background: @color12;
-    color: @foreground;
+    background: @secondary_container;
+    color: @on_secondary_container;
 }
 
+/* Custom Modules */
 #custom-notifi {
-    background: @color12;
-    color: @foreground;
+    background: @secondary_container;
+    color: @on_secondary_container;
 }
 
 #custom-kernel {
-    background: @color2;
-    color: @foreground;
+    background: @tertiary_container;
+    color: @on_tertiary_container;
 }
 
 #custom-gpu {
-    background: @color2;
-    color: @foreground;
+    background: @tertiary_container;
+    color: @on_tertiary_container;
 }
 
 #custom-gput {
-    background: @color2;
-    color: @foreground;
+    background: @tertiary_container;
+    color: @on_tertiary_container;
 }
 
 #custom-wifi {
-    background: @color5;
-    color: @background;
+    background: @secondary;
+    color: @on_secondary;
 }
-
