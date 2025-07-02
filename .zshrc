@@ -10,8 +10,8 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-#oh-my-posh
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyo.json)"
+#starship
+eval "$(starship init zsh)"
 
 # zsh plugins  
 zinit ice light zsh-users/zsh-completions
