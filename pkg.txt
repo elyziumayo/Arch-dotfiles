@@ -1,0 +1,7 @@
+libva-nvidia-driver
+clang 
+llvm 
+lld 
+mold 
+zstd 
+binutils
