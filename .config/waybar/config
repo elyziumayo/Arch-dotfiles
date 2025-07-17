@@ -17,7 +17,6 @@
 "temperature",
 "custom/gput",
 "clock#time",
-"custom/wifi",
 "custom/notifi",
 "tray"
 ],
@@ -85,10 +84,10 @@
 
 "network": {
 		"interval": 5,
-		"format-wifi": "  ({signalStrength}%)",
+		"format-wifi": " ({signalStrength}%)",
 		"format-ethernet": " {ifname}",
 		"format-disconnected": "No connection",
-		"format-alt": " {ipaddr}/{cidr}",
+    "on-click": "network",
     "on-click-right": "nm-connection-editor",
 		"tooltip": false
 },
@@ -154,12 +153,5 @@
        "format": " {}°",
        "exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits",
        "interval": 1
-},
-
-"custom/wifi": {
-    "format": "",
-    "tooltip": false,
-    "on-click": "network",
-    "interval": "once"
 }
 }
