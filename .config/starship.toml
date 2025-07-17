@@ -19,20 +19,20 @@ palette = 'colors'
 
 [palettes.colors]
 # Primary colors from Matugen
-primary = '#a9c7ff'
-on_primary = '#07305f'
-primary_dim = '#a9c7ff'
-surface = '#111318'
-surface_dim = '#111318'
-surface_container = '#1d2024'
-on_surface = '#e2e2e9'
-on_surface_variant = '#c4c6cf'
-tertiary = '#dcbce1'
+primary = '#bac3ff'
+on_primary = '#222c61'
+primary_dim = '#bac3ff'
+surface = '#121318'
+surface_dim = '#121318'
+surface_container = '#1f1f25'
+on_surface = '#e3e1e9'
+on_surface_variant = '#c6c5d0'
+tertiary = '#e5bad8'
 error = '#ffb4ab'
 # Additional semantic colors
-accent = '#a9c7ff'
-muted = '#c4c6cf'
-bright = '#07305f'
+accent = '#bac3ff'
+muted = '#c6c5d0'
+bright = '#222c61'
 
 [nodejs]
 symbol = " "
@@ -54,12 +54,12 @@ error_symbol = "[✗ ](error)"
 vicmd_symbol = "[➜](tertiary)"
 
 [git_branch]
-symbol = ""
+symbol = " "
 format = "[$symbol$branch]($style) "
 style = "muted"
 
 [jobs]
-symbol = ""
+symbol = " "
 style = "error bold"
 number_threshold = 1
 format = "[$symbol]($style)"
