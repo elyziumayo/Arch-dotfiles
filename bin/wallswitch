@@ -64,7 +64,7 @@ waybar &
 if command -v kitty >/dev/null 2>&1 && pgrep -x kitty >/dev/null 2>&1; then
     # Try direct method first (if running inside kitty)
     if [ "$TERM" = "xterm-kitty" ]; then
-        kitty @ set-colors --all "$HOME/.config/kitty/colors-kitty.conf" 2>/dev/null
+        kitty @ set-colors --all "$HOME/.config/kitty/colors.conf" 2>/dev/null
     else
         # Try socket method
         kitty @ --to "unix:/tmp/kitty_mat" set-colors --all "$HOME/.config/kitty/colors.conf" 2>/dev/null
