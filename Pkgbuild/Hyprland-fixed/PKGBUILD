@@ -102,6 +102,8 @@ prepare() {
   if [[ -z "$(git config --get user.name)" ]]; then
     git config user.name local && git config user.email '<>' && git config commit.gpgsign false
   fi
+  # Remove unsupported '--no-gnu-unique' flag from Makefile for Clang compatibility
+  sed -i 's/--no-gnu-unique//g' "hyprtester/plugin/Makefile"
 }
 
 pkgver() {
