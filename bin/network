@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Configuration
-THEME_FILE="$HOME/Scripts/wifi.rasi"
+THEME_FILE="$HOME/.config/rofi/wifi.rasi"
 LOCK_SYMBOL="🔒"
 UNLOCK_SYMBOL="🔓"
 REFRESH_SYMBOL="🔄"
