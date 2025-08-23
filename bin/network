@@ -154,6 +154,17 @@ connect_to_network() {
     
     [[ -z "$ssid" ]] && exit 1
     
+    # Check if network is already saved
+    if nmcli connection show | grep -q "^$ssid "; then
+        notify "Connecting" "Connecting to saved network $ssid..." "low"
+        if nmcli connection up "$ssid"; then
+            notify "Connected" "Successfully connected to $ssid" "normal"
+        else
+            notify "Connection Failed" "Failed to connect to $ssid" "critical"
+        fi
+        return
+    fi
+    
     local security=$(echo "$selection" | grep -o -E "(WPA|WEP|WPA2|--)")
     
     if [[ "$security" != "--" ]]; then
