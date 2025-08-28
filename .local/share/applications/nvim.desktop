@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Neovim
+Exec=kitty -e nvim %F
+Terminal=false
+Type=Application
+Keywords=Text;editor;
+Icon=nvim
+Categories=Utility;TextEditor;
+StartupNotify=false
