@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #    ██╗    ██╗ █████╗ ██╗     ██╗     ███████╗██╗    ██╗██╗████████╗ ██████╗██╗  ██╗
 #    ██║    ██║██╔══██╗██║     ██║     ██╔════╝██║    ██║██║╚══██╔══╝██╔════╝██║  ██║
@@ -6,72 +6,28 @@
 #    ██║███╗██║██╔══██║██║     ██║     ╚════██║██║███╗██║██║   ██║   ██║     ██╔══██║
 #    ╚███╔███╔╝██║  ██║███████╗███████╗███████║╚███╔███╔╝██║   ██║   ╚██████╗██║  ██║
 #     ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝
-#    ---------------------------------------------------------------------------
-#    Created by Elyziumayo                                         Version 2.0.0
-#    ---------------------------------------------------------------------------
 
-# paths
 WALLPAPER_DIR="$HOME/wallpapers"
-CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
 
-# rofi wallpaper picker
-cd "$WALLPAPER_DIR"
-declare -A display_map
-temp_file=$(mktemp)
+[[ ! -d "$WALLPAPER_DIR" ]] && exit 1
 
-find . -type f -name "*.jpg" -o -name "*.png" | sed 's|./||' | while read -r img; do
-    display_name="${img%.*}"  # Remove extension for display
-    echo "$display_name|$img" >> "$temp_file"
-    printf "$display_name\0icon\x1f$WALLPAPER_DIR/$img\n"
-done | rofi -dmenu -show-icons -i \
+cd "$WALLPAPER_DIR" || exit 1
+
+selected=$(find . -type f \( -name "*.jpg" -o -name "*.png" \) | sed 's|./||' | while read -r img; do
+    printf "${img%.*}\0icon\x1f$WALLPAPER_DIR/$img\n"
+done | rofi -dmenu -show-icons -i -matching fuzzy \
     -kb-cancel 'Escape' \
-    -matching fuzzy\
-    -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 1300px; height: 357px; border-radius:10px 0px 0px 0px;}' \
-    -theme-str 'mainbox {padding:0px;spacing:0px;children: [ "message", "listview", "inputbar" ];margin:0px;}' \
-    -theme-str 'inputbar{padding:5px;children:[ "textbox-prompt-colon", "entry", "mode-switcher"];background-image:none;border:2px 0px 0px 0px solid;}'\
+    -theme-str 'window {location: center; anchor: center; width: 1300px; height: 373px; border-radius: 10px 0px 0px 0px;}' \
+    -theme-str 'mainbox {padding: 0px; spacing: 0px; children: ["listview", "inputbar"];}' \
+    -theme-str 'inputbar {padding: 5px; children: ["entry"];background-image:none;border:2px 0px 0px 0px solid;}' \
     -theme-str 'listview {columns: 4; lines: 1;}' \
-    -theme-str 'element {padding: 0px; margin: 0px; spacing: 0px; orientation: vertical; children: [element-text,element-icon]; border-radius:5px 5px 0px 0px;}' \
-    -theme-str 'element-icon {size: 283px; margin: 0px; padding: 0px;}' \
-    -theme-str 'element-text {font: "Jetbrains Mono Propo 10";horizontal-align: 0.1; vertical-align: 0.0; margin: 20px 0px 0px 0px;}' \
-    -p "Select Wallpaper" > /tmp/rofi_selection
+    -theme-str 'element {orientation: vertical; children: [element-text, element-icon]; border-radius: 5px 5px 0px 0px;}' \
+    -theme-str 'element-icon {size: 283px;}' \
+    -theme-str 'element-text {font: "JetBrains Mono Propo 10"; horizontal-align: 0.1; margin: 20px 0px 0px 0px;}')
 
-# Get the selected display name
-selected_display=$(cat /tmp/rofi_selection)
+[[ -z "$selected" ]] && exit 0
 
-# exit if nothing selected
-[ -z "$selected_display" ] && { rm -f "$temp_file" /tmp/rofi_selection; exit 1; }
+wallpaper=$(find . -type f \( -name "${selected}.jpg" -o -name "${selected}.png" \) | sed 's|./||' | head -n 1)
 
-# Convert display name back to full filename
-selected=$(grep "^$selected_display|" "$temp_file" | cut -d'|' -f2)
-
-# Clean up temp files
-rm -f "$temp_file" /tmp/rofi_selection
-
-# exit if no matching file found
-[ -z "$selected" ] && exit 1
-
-# setup hyprpaper
-echo "preload = ~/wallpapers/$selected" > "$CONFIG_FILE"
-echo "wallpaper = ,~/wallpapers/$selected" >> "$CONFIG_FILE"
-echo "splash = false" >> "$CONFIG_FILE"
-
-killall hyprpaper
-hyprpaper &
-killall waybar &
-#generate colors
-matugen image "$WALLPAPER_DIR/$selected" 
-waybar &
-if command -v kitty >/dev/null 2>&1 && pgrep -x kitty >/dev/null 2>&1; then
-    # Try direct method first (if running inside kitty)
-    if [ "$TERM" = "xterm-kitty" ]; then
-        kitty @ set-colors --all "$HOME/.config/kitty/colors.conf" 2>/dev/null
-    else
-        # Try socket method
-        kitty @ --to "unix:/tmp/kitty_mat" set-colors --all "$HOME/.config/kitty/colors.conf" 2>/dev/null
-    fi
-fi
-killall swaync
-swaync &
-# notify
-notify-send "Wallpaper & Theme Updated" "Wallpaper, colors, and Rofi theme have been updated to: $selected" -i "$WALLPAPER_DIR/$selected"
+[[ -n "$wallpaper" ]] && matugen image "$WALLPAPER_DIR/$wallpaper"
 
