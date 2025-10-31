@@ -1,4 +1,13 @@
 [config]
+[config.wallpaper]
+set = true
+command = "swww"
+arguments = ["img", "--transition-type", "center"]
+
+[templates.waybar]
+input_path = '~/.config/matugen/specs/waybarc.css'
+output_path = '~/.config/waybar/colors.css'
+post_hook = 'pkill waybar; waybar & disown'
 
 [templates.gtk3]
 input_path = '~/.config/matugen/specs/gtkc.conf'
@@ -11,10 +20,7 @@ output_path = '~/.config/gtk-4.0/colors.css'
 [templates.kitty]
 input_path = '~/.config/matugen/specs/kittyc.conf'
 output_path = '~/.config/kitty/colors.conf'
-
-[templates.waybar]
-input_path = '~/.config/matugen/specs/waybarc.css'
-output_path = '~/.config/waybar/colors.css'
+post_hook = 'kill -SIGUSR1 $(pgrep kitty)'
 
 [templates.rofi]
 input_path = '~/.config/matugen/specs/rofic.rasi'
@@ -23,6 +29,7 @@ output_path = '~/.config/rofi/colors.rasi'
 [templates.swaync]
 input_path = '~/.config/matugen/specs/swayncc.css'
 output_path = '~/.config/swaync/colors.css'
+post_hook = 'pkill swaync; swaync & disown'
 
 [templates.starship]
 input_path = '~/.config/matugen/specs/starshipc.toml'
