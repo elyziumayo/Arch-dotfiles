@@ -1,8 +1,9 @@
 [config]
+
 [config.wallpaper]
 set = true
-command = "swww"
-arguments = ["img", "--transition-type", "center"]
+command = "awww"
+arguments = ["img", "--transition-type", "any" ,"--transition-fps","60","--transition-duration","1"]
 
 [templates.waybar]
 input_path = '~/.config/matugen/specs/waybarc.css'
@@ -16,6 +17,7 @@ output_path = '~/.config/gtk-3.0/colors.css'
 [templates.gtk4]
 input_path = '~/.config/matugen/specs/gtkc.conf'
 output_path = '~/.config/gtk-4.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme "";gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3-dark"'
 
 [templates.kitty]
 input_path = '~/.config/matugen/specs/kittyc.conf'
@@ -27,10 +29,36 @@ input_path = '~/.config/matugen/specs/rofic.rasi'
 output_path = '~/.config/rofi/colors.rasi'
 
 [templates.swaync]
-input_path = '~/.config/matugen/specs/swayncc.css'
+input_path = '~/.config/matugen/specs/swaync.css'
 output_path = '~/.config/swaync/colors.css'
 post_hook = 'pkill swaync; swaync & disown'
+
+[templates.clipse]
+input_path = '~/.config/matugen/specs/clipse.json'
+output_path = '~/.config/clipse/theme.json'
 
 [templates.starship]
 input_path = '~/.config/matugen/specs/starshipc.toml'
 output_path = '~/.config/starship.toml'
+
+[templates.pywalfox]
+input_path = '~/.config/matugen/specs/pywal.json'
+output_path = '~/.cache/wal/colors.json'
+post_hook = 'pywalfox update'
+
+[templates.hyprland]
+input_path = '~/.config/matugen/specs/hypr.conf'
+output_path = '~/.config/hypr/colors.conf'
+post_hook = 'hyprctl reload'
+
+[templates.zed]
+input_path = '~/.config/matugen/specs/zed.json'
+output_path = '~/.config/zed/themes/matugen.json'
+
+[templates.qt5ct]
+input_path = '~/.config/matugen/specs/qt.conf'
+output_path = '~/.config/qt5ct/colors/matugen.conf'
+
+[templates.qt6ct]
+input_path = '~/.config/matugen/specs/qt.conf'
+output_path = '~/.config/qt6ct/colors/matugen.conf'
