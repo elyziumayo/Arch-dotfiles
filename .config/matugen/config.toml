@@ -6,7 +6,7 @@ command = "awww"
 arguments = ["img", "--transition-type", "any" ,"--transition-fps","60","--transition-duration","1"]
 
 [templates.waybar]
-input_path = '~/.config/matugen/specs/waybarc.css'
+input_path = '~/.config/matugen/specs/waybar.css'
 output_path = '~/.config/waybar/colors.css'
 post_hook = 'pkill waybar; waybar & disown'
 
