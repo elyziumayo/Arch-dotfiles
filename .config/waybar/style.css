@@ -3,13 +3,13 @@
   │         WAYBAR THEME FILE           │
   │                                     │
   │  Original: PipshagLE                │
-  │  Modified by: me                    │
+  │  Modified: me                       │
   └─────────────────────────────────────┘
-Import dynamic Matugen colors */
-@import "colors.css";
+*/
 
-/* Additional color definitions for compatibility */
-@define-color critical @error;
+/* Import dynamic Matugen colors and stuff */
+@import "colors.css";
+@define-color critical #e60000;  
 @define-color urgent @error_container;
 
 /*
@@ -19,25 +19,16 @@ Import dynamic Matugen colors */
 ▐▌ ▐▌      █              ▐▌  █                  
                           ▐▌                     
 */
-
-@keyframes blink-warning {
-    70% {
-        color: @on_surface;
-    }
-    to {
-        color: @on_surface;
-        background-color: @tertiary;
-    }
+@keyframes blink-critical {
+    0%   { color: @on_surface; text-shadow: none; }
+    50%  { color: @critical; text-shadow: 0 0 4px @critical; }
+    100% { color: @on_surface; text-shadow: none; }
 }
 
-@keyframes blink-critical {
-    70% {
-        color: @on_surface;
-    }
-    to {
-        color: @on_surface;
-        background-color: @critical;
-    }
+@keyframes blink-warning {
+    0%   { color: @on_surface; }
+    50%  { color: @on_tertiary; }
+    100% { color: @on_surface; }
 }
 
 /*
@@ -46,7 +37,6 @@ Import dynamic Matugen colors */
 ▐▛▀▚▖▐▛▀▜▌ ▝▀▚▖▐▛▀▀▘ ▝▀▚▖  █    ▐▌  ▐▌   ▐▛▀▀▘
 ▐▙▄▞▘▐▌ ▐▌▗▄▄▞▘▐▙▄▄▖▗▄▄▞▘  █    ▐▌  ▐▙▄▄▖▐▙▄▄▖
 */
-                                              
 * {
     border: none;
     border-radius: 1.5px;
@@ -68,26 +58,27 @@ Import dynamic Matugen colors */
     ▀▄▄▄▀ █   █ █   █ ▀▄▄▄▀ █   █ ▄▄▄▀ ▐▌   ▀▀▀█ 
                                        ▐▌  ▄   █ 
                                        ▐▌   ▀▀▀  
-*/                   
-#battery,
-#cpu,
-#memory,
-#network,
-#wireplumber,
-#temperature,
-#tray,
-#custom-kernel,
-#custom-gpu,
-#custom-gput,
-#custom-notifi,
-#clock,
-#disk {
+*/  
+
+#battery, 
+#memory, 
+#network, 
+#wireplumber, 
+#tray, 
+#custom-kernel, 
+#custom-gpu, 
+#custom-notifi, 
+#Clock {
     padding: 0 0.8em;
+    border-radius: 0px 6px 0px 6px;
 }
 
-#memory,
-#temperature,
-#battery {
+/* CPU, Temp, Memory */
+#cpu, #temperature, #memory {
+    background: @inverse_primary;
+    color: @on_tertiary_container;
+    border-radius: 0px 0px 0px 6px;
+    padding: 0 0.6em;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -101,34 +92,20 @@ Import dynamic Matugen colors */
      ▐▌         ▐▌       
 */
 #memory.critical,
-#cpu.critical,
 #temperature.critical,
-#battery.critical {
-    color: @critical;
+#battery.critical,
+#cpu.critical {
+    font-weight: bold;
+    animation: blink-critical 1.5s linear infinite alternate;
 }
-
-#memory.critical,
-#temperature.critical,
-#battery.critical.discharging {
-    animation-name: blink-critical;
-    animation-duration: 2s;
-}
-
-/* Warning state styling */
 #network.disconnected,
 #memory.warning,
 #cpu.warning,
 #temperature.warning,
 #battery.warning {
-    background: @tertiary;
-    color: @on_tertiary;
+    font-weight: bold;
+    animation: blink-warning 2s linear infinite alternate;
 }
-
-#battery.warning.discharging {
-    animation-name: blink-warning;
-    animation-duration: 3s;
-}
-
 /*
 ▄   ▄  ▄▄▄   ▄▄▄ █  ▄  ▄▄▄ ▄▄▄▄  ▗▞▀▜▌▗▞▀▘▗▞▀▚▖ ▄▄▄ 
 █ ▄ █ █   █ █    █▄▀  ▀▄▄  █   █ ▝▚▄▟▌▝▚▄▖▐▛▀▀▘▀▄▄  
@@ -142,109 +119,61 @@ Import dynamic Matugen colors */
     color: @on_surface;
     background: @surface_container_high;
     font-size: 1em;
+    border-radius: 0px 6px 0px 6px;
 }
 
-#workspaces button.visible {
-    color: @on_primary;
-    background-color: @primary_container;
+#workspaces button.visible{ 
+                color: @on_primary;
+                background-color: @primary_container; 
 }
-
-#workspaces button.focused {
-    background: @primary;
-    color: @on_primary;
-    opacity: 1;
-    padding: 0 0.4em;
+#workspaces button.focused { 
+                background: @primary; 
+                color: @on_primary; 
+                padding: 0 0.4em; opacity: 1; 
 }
-
-#workspaces button.urgent {
-    border-color: @urgent;
-    color: @urgent;
-    opacity: 1;
+#workspaces button.urgent { 
+                border-color: @urgent; 
+                color: @urgent; opacity: 1; 
 }
-
-#workspaces button:hover {
-    background: @surface_container;
-    color: @on_surface;
+#workspaces button:hover { 
+                background: @surface_container; 
+                color: @on_surface; 
 }
 
 /*
-▄▄▄▄   ▄▄▄     ▐▌█  ▐▌█ ▗▞▀▚▖ ▄▄▄ 
-█ █ █ █   █    ▐▌▀▄▄▞▘█ ▐▛▀▀▘▀▄▄  
-█   █ ▀▄▄▄▀ ▗▞▀▜▌     █ ▝▚▄▄▖▄▄▄▀ 
-            ▝▚▄▟▌     █           
-*/
+▗▖  ▗▖ ▄▄▄     ▐▌█  ▐▌█ ▗▞▀▚▖ ▄▄▄ 
+▐▛▚▞▜▌█   █    ▐▌▀▄▄▞▘█ ▐▛▀▀▘▀▄▄  
+▐▌  ▐▌▀▄▄▄▀ ▗▞▀▜▌     █ ▝▚▄▄▖▄▄▄▀ 
+▐▌  ▐▌      ▝▚▄▟▌     █           
+                                  
+ */                                  
 
-/* Audio/Volume */
-#wireplumber {
-    background: @secondary;
-    color: @on_secondary;
+/* CPU + Temperature + Memory Group */
+#memory { 
+         margin-left: -0.6em; 
+         border-radius: 0px 6px 0px 0px; 
+}
+#cpu { 
+        border-radius:0px 0px 0px 6px; 
+}
+#temperature { 
+        margin-left:-0.3em; 
+        border-radius:0px; 
+}
+#cpu, #temperature, #memory { 
+        background: @on_tertiary_fixed_variant; 
+        color: @on_tertiary_container; 
 }
 
-/* Network */
-#network {
-    background: @primary;
-    color: @on_primary;
-}
+/* Audio / Volume */
+#wireplumber { background: @secondary; color: @on_secondary;}
+#network { background: @primary; color: @on_primary;}
+#disk { background: @surface_container_high;color: @on_surface; }
+#battery { background: @primary_container; color: @on_primary_container; }
+#tray { background: @surface_container_high; }
+#clock.time { background: transparent; font-size: 12px; color: @on_secondary_container; }
+#custom-notifi { background: @secondary_container; color: @on_secondary_container; }
+#custom-kernel { background: @inverse_primary; color: @on_tertiary_container; }
+#custom-gpu { background: @tertiary_container; color: @on_tertiary_container; }
 
-/* Memory */
-#memory {
-    background: @tertiary_container;
-    color: @on_tertiary_container;
-}
-
-/* CPU */
-#cpu {
-    background: @surface_container_highest;
-    color: @on_surface;
-}
-
-/* Disk */
-#disk {
-    background: @surface_container_high;
-    color: @on_surface;
-}
-
-/* Temperature */
-#temperature {
-    background: @tertiary;
-    color: @on_tertiary;
-}
-
-/* Battery */
-#battery {
-    background: @primary_container;
-    color: @on_primary_container;
-}
-
-/* System Tray */
-#tray {
-    background: @surface_container_high;
-}
-
-/* Clock */
-#clock.time {
-    background: @secondary_container;
-    color: @on_secondary_container;
-}
-
-/* Custom Modules */
-#custom-notifi {
-    background: @secondary_container;
-    color: @on_secondary_container;
-}
-
-#custom-kernel {
-    background: @tertiary_container;
-    color: @on_tertiary_container;
-}
-
-#custom-gpu {
-    background: @tertiary_container;
-    color: @on_tertiary_container;
-}
-
-#custom-gput {
-    background: @tertiary_container;
-    color: @on_tertiary_container;
-}
 
