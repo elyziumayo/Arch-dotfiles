@@ -1,12 +1,10 @@
 #!/bin/bash
-
 #    ██╗    ██╗ █████╗ ██╗     ██╗     ███████╗██╗    ██╗██╗████████╗ ██████╗██╗  ██╗
-#    ██║    ██║██╔══██╗██║     ██║     ██╔════╝██║    ██║██║╚══██╔══╝██╔════╝██║  ██║
+#    ██║    ██║██╔══██╗██║     ██║     ██║     ██║    ██║██║╚══██╔══╝██╔════╝██║  ██║
 #    ██║ █╗ ██║███████║██║     ██║     ███████╗██║ █╗ ██║██║   ██║   ██║     ███████║
 #    ██║███╗██║██╔══██║██║     ██║     ╚════██║██║███╗██║██║   ██║   ██║     ██╔══██║
 #    ╚███╔███╔╝██║  ██║███████╗███████╗███████║╚███╔███╔╝██║   ██║   ╚██████╗██║  ██║
 #     ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝
-
 WALLPAPER_DIR="$HOME/wallpapers"
 
 [[ ! -d "$WALLPAPER_DIR" ]] && exit 1
@@ -29,5 +27,7 @@ done | rofi -dmenu -show-icons -i -matching fuzzy \
 
 wallpaper=$(find . -type f \( -name "${selected}.jpg" -o -name "${selected}.png" \) | sed 's|./||' | head -n 1)
 
-[[ -n "$wallpaper" ]] && matugen image "$WALLPAPER_DIR/$wallpaper"
-
+if [[ -n "$wallpaper" ]]; then
+    matugen image "$WALLPAPER_DIR/$wallpaper"
+    ffmpeg -i "$WALLPAPER_DIR/$wallpaper" -vf "crop=728:151" "$HOME/.config/rofi/theme/default.png" -y 2>/dev/null
+fi
