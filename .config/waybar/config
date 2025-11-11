@@ -3,20 +3,20 @@
 "position": "top",
 "modules-left": [
 "cpu",
-"custom/gpu",
-"disk",
+"temperature",
 "memory",
 "hyprland/workspaces"
 ],
+"modules-center": [
+    "clock#time",
 
+],
 "modules-right":[
 "wireplumber",
 "custom/kernel",
 "network",
 "battery",
-"temperature",
-"custom/gput",
-"clock#time",
+"custom/gpu",
 "custom/notifi",
 "tray"
 ],
@@ -48,16 +48,15 @@
 
 "clock#time": {
 		"interval": 10,
-		"format": " {:%H:%M}",
-    "format-alt":" {:%e %b}",
+    "format": "{:%a %d %b • %H:%M}",
+    "on-click": "quickshell msg mprisToggle togglePlayer",
 		"tooltip": false
 	},
 
 "cpu": {
 		"interval": 1,
 		"tooltip": false,
-		"format": " {usage}%",
-		"format-alt": " {load}",
+		"format": " {usage}%",
 		"states": {
 		"warning": 70,
 		"critical": 90
@@ -71,15 +70,6 @@
 		"critical": 90
 		},
 		"tooltip": false
-},
-
-"disk": {
-    "interval": 30,
-    "format": " {percentage_used}%",
-    "path": "/home"
-
-
-
 },
 
 "network": {
@@ -145,13 +135,9 @@
     "format": " {}"
 },
 "custom/gpu": {
-       "format": " {}%",
-       "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
-       "interval": 2
-},
-"custom/gput": {
-       "format": " {}°",
-       "exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits",
-       "interval": 1
+    "format": "{}", 
+    "exec": "bash -c 'echo \" $(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits)%   $(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits)°C\"'",
+    "interval": 2
 }
+
 }
